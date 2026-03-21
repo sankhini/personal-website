@@ -587,39 +587,52 @@
     }
 
     .support-fab {
+      --support-accent: #111111;
       position: fixed;
       right: 18px;
       bottom: 18px;
       z-index: 26;
       display: none;
       align-items: center;
-      gap: 0.55rem;
-      max-width: 220px;
-      padding: 0.75rem 0.95rem;
-      border-radius: 999px;
-      color: #ffffff;
+      gap: 0.7rem;
+      max-width: 210px;
+      padding: 0.65rem 0.8rem;
+      border-radius: 12px;
+      color: var(--ink);
       text-decoration: none;
-      font-size: 0.72rem;
-      letter-spacing: 0.08em;
-      line-height: 1.25;
-      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.18);
-      backdrop-filter: blur(6px);
+      font-size: 0.66rem;
+      letter-spacing: 0.12em;
+      line-height: 1.35;
+      border: 1px solid var(--rule);
+      background: rgba(252, 251, 250, 0.92);
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
+      backdrop-filter: blur(4px);
     }
 
     .support-fab.show {
       display: inline-flex;
     }
 
+    .support-fab:hover {
+      transform: translateY(-1px);
+    }
+
     .support-fab .cup {
-      width: 24px;
-      height: 24px;
+      width: 10px;
+      height: 28px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.2);
+      background: var(--support-accent);
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.9rem;
       flex: 0 0 auto;
+      opacity: 0.85;
+    }
+
+    body.night .support-fab {
+      background: rgba(20, 20, 18, 0.94);
+      color: var(--ink);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
     }
 
     @media (max-width: 640px) {
@@ -921,7 +934,7 @@
       }
 
       supportFab.href = config.url;
-      supportFab.style.background = config.color;
+      supportFab.style.setProperty("--support-accent", config.color);
       supportFabText.textContent = config.message;
       supportFab.classList.add("show");
     }
