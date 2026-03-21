@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -33,6 +33,16 @@
           tallyEmojiText: "👋",
           tallyEmojiAnimation: "wave",
           tallyAutoClose: "0"
+        },
+        supportWidget: {
+          url: "https://www.buymeacoffee.com/sankhini",
+          id: "sankhini",
+          description: "Support me on Buy me a coffee!",
+          message: "support DigiBodh :)",
+          color: "#5F7FFF",
+          position: "Right",
+          xMargin: "18",
+          yMargin: "18"
         },
         linkedinUrl: "https://www.linkedin.com/in/sankhini",
         digibodh: {
@@ -100,7 +110,17 @@
             publication: "Bear Blog",
             url: "https://sankhiniwrites.bearblog.dev/"
           }
-        ]
+        ],
+        supportWidget: {
+          url: "https://www.buymeacoffee.com/sankhini",
+          id: "sankhini",
+          description: "Support me on Buy me a coffee!",
+          message: "buy me a book!",
+          color: "#FF5F5F",
+          position: "Right",
+          xMargin: "18",
+          yMargin: "18"
+        }
       },
 
       poemExperience: {
@@ -566,6 +586,50 @@
       padding-bottom: 0.2rem;
     }
 
+    .support-fab {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 26;
+      display: none;
+      align-items: center;
+      gap: 0.55rem;
+      max-width: 220px;
+      padding: 0.75rem 0.95rem;
+      border-radius: 999px;
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      line-height: 1.25;
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.18);
+      backdrop-filter: blur(6px);
+    }
+
+    .support-fab.show {
+      display: inline-flex;
+    }
+
+    .support-fab .cup {
+      width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.2);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      flex: 0 0 auto;
+    }
+
+    @media (max-width: 640px) {
+      .support-fab {
+        right: 12px;
+        bottom: 12px;
+        max-width: calc(100vw - 24px);
+      }
+    }
+
     .work-with-me {
       display: grid;
       gap: 0.75rem;
@@ -786,6 +850,11 @@
         <iframe id="resume-frame" title="Resume" src=""></iframe>
       </div>
     </div>
+
+    <a id="support-fab" class="support-fab" href="#" target="_blank" rel="noreferrer" aria-label="Support on Buy Me a Coffee">
+      <span class="cup">B</span>
+      <span id="support-fab-text"></span>
+    </a>
   </div>
 
   <script>
@@ -831,11 +900,31 @@
     const resumeFrame = document.getElementById("resume-frame");
     const resumeClose = document.getElementById("resume-close");
     const resumeLink = document.getElementById("resume-link");
+    const supportFab = document.getElementById("support-fab");
+    const supportFabText = document.getElementById("support-fab-text");
 
     let mode = null;
     let scavengerStep = 1;
     let openPoemFromScavenger = null;
     let neonTimer = null;
+    
+    function syncSupportFab() {
+      let config = null;
+      if (mode === "professional") config = content.professional.supportWidget;
+      if (mode === "human") config = content.human.supportWidget;
+
+      if (!config) {
+        supportFab.classList.remove("show");
+        supportFab.href = "#";
+        supportFabText.textContent = "";
+        return;
+      }
+
+      supportFab.href = config.url;
+      supportFab.style.background = config.color;
+      supportFabText.textContent = config.message;
+      supportFab.classList.add("show");
+    }
 
     function setMode(nextMode) {
       mode = nextMode;
@@ -865,6 +954,7 @@
         showNeonNote(content.human.scavenger.step1);
       }
       updateScavengerState();
+      syncSupportFab();
     }
 
     function resetToLanding() {
@@ -879,6 +969,7 @@
       setInkVisibility();
       updateScavengerState();
       setNightMode(false);
+      syncSupportFab();
     }
 
     function renderLanding() {
