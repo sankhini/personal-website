@@ -38,7 +38,7 @@
           url: "https://www.buymeacoffee.com/sankhini",
           id: "sankhini",
           description: "Support me on Buy me a coffee!",
-          message: "support DigiBodh :)",
+          message: "support DigiBodh if you'd like",
           color: "#5F7FFF",
           position: "Right",
           xMargin: "18",
@@ -49,7 +49,19 @@
           name: "DigiBodh",
           description: "Most cyber safety education is written for people who already half-understand the internet. DigiBodh is for everyone else, seniors, students, and communities in smaller towns navigating a digital world with no roadmap. It offers multilingual education on staying safe online, understanding digital rights, and knowing when to pause before you click.",
           url: "https://www.linkedin.com/company/digibodh/"
-        }
+        },
+        vibeTools: [
+          {
+            name: "pswrd",
+            description: "A browser-based password tool that makes cyber hygiene feel practical, not intimidating.",
+            url: "https://pswrd.lovable.app"
+          },
+          {
+            name: "unblurit",
+            description: "A plain-language tool for understanding privacy policies and terms before clicking agree.",
+            url: "https://unblurit.lovable.app"
+          }
+        ]
       },
 
       human: {
@@ -115,7 +127,7 @@
           url: "https://www.buymeacoffee.com/sankhini",
           id: "sankhini",
           description: "Support me on Buy me a coffee!",
-          message: "buy me a book!",
+          message: "buy me a book, if you feel like it",
           color: "#FF5F5F",
           position: "Right",
           xMargin: "18",
@@ -586,61 +598,31 @@
       padding-bottom: 0.2rem;
     }
 
-    .support-fab {
+    .support-note {
       --support-accent: #111111;
-      position: fixed;
-      right: 18px;
-      bottom: 18px;
-      z-index: 26;
-      display: none;
-      align-items: center;
-      gap: 0.7rem;
-      max-width: 210px;
-      padding: 0.65rem 0.8rem;
-      border-radius: 12px;
-      color: var(--ink);
-      text-decoration: none;
-      font-size: 0.66rem;
-      letter-spacing: 0.12em;
-      line-height: 1.35;
-      border: 1px solid var(--rule);
-      background: rgba(252, 251, 250, 0.92);
-      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
-      backdrop-filter: blur(4px);
-    }
-
-    .support-fab.show {
       display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      margin-top: 0.9rem;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      line-height: 1.5;
+      opacity: 0.92;
     }
 
-    .support-fab:hover {
-      transform: translateY(-1px);
+    .support-note:hover {
+      color: var(--ink);
     }
 
-    .support-fab .cup {
-      width: 10px;
-      height: 28px;
+    .support-note .bar {
+      width: 3px;
+      height: 16px;
       border-radius: 999px;
       background: var(--support-accent);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
       flex: 0 0 auto;
-      opacity: 0.85;
-    }
-
-    body.night .support-fab {
-      background: rgba(20, 20, 18, 0.94);
-      color: var(--ink);
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
-    }
-
-    @media (max-width: 640px) {
-      .support-fab {
-        right: 12px;
-        bottom: 12px;
-        max-width: calc(100vw - 24px);
-      }
+      opacity: 0.8;
     }
 
     .work-with-me {
@@ -670,6 +652,43 @@
       border-bottom: 1px solid var(--rule);
       padding-bottom: 0.2rem;
       cursor: pointer;
+    }
+
+    .vibe-tools-list {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .vibe-tool-item {
+      display: grid;
+      grid-template-columns: 48px minmax(0, 1fr);
+      gap: 0.9rem;
+      align-items: start;
+    }
+
+    .vibe-tool-index {
+      color: var(--muted);
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding-top: 0.15rem;
+    }
+
+    .vibe-tool-main h3 {
+      margin: 0 0 0.25rem;
+      font-size: 0.95rem;
+    }
+
+    .vibe-tool-main p {
+      margin: 0 0 0.45rem;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .vibe-tool-main a {
+      font-size: 0.76rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
     }
 
     .poem-note {
@@ -780,6 +799,10 @@
       <section id="professional" class="view">
         <section>
           <p id="professional-bio"></p>
+          <a id="support-note-professional" class="support-note" href="#" target="_blank" rel="noreferrer">
+            <span class="bar"></span>
+            <span id="support-note-professional-text"></span>
+          </a>
         </section>
 
         <section>
@@ -790,6 +813,11 @@
         <section>
           <h2 class="section-title">Projects</h2>
           <div id="digibodh"></div>
+        </section>
+
+        <section>
+          <h2 class="section-title">Vibe Tools I Built</h2>
+          <div id="vibe-tools" class="vibe-tools-list"></div>
         </section>
 
         <section>
@@ -816,6 +844,10 @@
           <h1 id="human-name"></h1>
           <p id="human-hero"></p>
           <p id="human-clue" class="clue"></p>
+          <a id="support-note-human" class="support-note" href="#" target="_blank" rel="noreferrer">
+            <span class="bar"></span>
+            <span id="support-note-human-text"></span>
+          </a>
         </section>
 
         <section>
@@ -864,10 +896,6 @@
       </div>
     </div>
 
-    <a id="support-fab" class="support-fab" href="#" target="_blank" rel="noreferrer" aria-label="Support on Buy Me a Coffee">
-      <span class="cup">B</span>
-      <span id="support-fab-text"></span>
-    </a>
   </div>
 
   <script>
@@ -887,6 +915,7 @@
     const professionalBio = document.getElementById("professional-bio");
     const substackFeed = document.getElementById("substack-feed");
     const digibodh = document.getElementById("digibodh");
+    const vibeTools = document.getElementById("vibe-tools");
     const workWithMe = document.getElementById("work-with-me");
     const contactEmailProf = document.getElementById("contact-email-prof");
     const linkedinConnectProf = document.getElementById("linkedin-connect-prof");
@@ -913,30 +942,24 @@
     const resumeFrame = document.getElementById("resume-frame");
     const resumeClose = document.getElementById("resume-close");
     const resumeLink = document.getElementById("resume-link");
-    const supportFab = document.getElementById("support-fab");
-    const supportFabText = document.getElementById("support-fab-text");
+    const supportNoteProfessional = document.getElementById("support-note-professional");
+    const supportNoteProfessionalText = document.getElementById("support-note-professional-text");
+    const supportNoteHuman = document.getElementById("support-note-human");
+    const supportNoteHumanText = document.getElementById("support-note-human-text");
 
     let mode = null;
     let scavengerStep = 1;
     let openPoemFromScavenger = null;
     let neonTimer = null;
-    
-    function syncSupportFab() {
-      let config = null;
-      if (mode === "professional") config = content.professional.supportWidget;
-      if (mode === "human") config = content.human.supportWidget;
 
-      if (!config) {
-        supportFab.classList.remove("show");
-        supportFab.href = "#";
-        supportFabText.textContent = "";
-        return;
-      }
+    function renderSupportNotes() {
+      supportNoteProfessional.href = content.professional.supportWidget.url;
+      supportNoteProfessional.style.setProperty("--support-accent", content.professional.supportWidget.color);
+      supportNoteProfessionalText.textContent = content.professional.supportWidget.message;
 
-      supportFab.href = config.url;
-      supportFab.style.setProperty("--support-accent", config.color);
-      supportFabText.textContent = config.message;
-      supportFab.classList.add("show");
+      supportNoteHuman.href = content.human.supportWidget.url;
+      supportNoteHuman.style.setProperty("--support-accent", content.human.supportWidget.color);
+      supportNoteHumanText.textContent = content.human.supportWidget.message;
     }
 
     function setMode(nextMode) {
@@ -967,7 +990,6 @@
         showNeonNote(content.human.scavenger.step1);
       }
       updateScavengerState();
-      syncSupportFab();
     }
 
     function resetToLanding() {
@@ -982,7 +1004,6 @@
       setInkVisibility();
       updateScavengerState();
       setNightMode(false);
-      syncSupportFab();
     }
 
     function renderLanding() {
@@ -1002,6 +1023,17 @@
           <a href="${content.professional.digibodh.url}" target="_blank" rel="noreferrer">visit project ↗</a>
         </div>
       `;
+
+      vibeTools.innerHTML = content.professional.vibeTools.map((tool, index) => `
+        <article class="vibe-tool-item">
+          <div class="vibe-tool-index">${String(index + 1).padStart(2, "0")}</div>
+          <div class="vibe-tool-main">
+            <h3>${tool.name}</h3>
+            <p>${tool.description}</p>
+            <a href="${tool.url}" target="_blank" rel="noreferrer">visit ↗</a>
+          </div>
+        </article>
+      `).join("");
 
       workWithMe.innerHTML = `
         <p>${content.professional.workWithMe.intro}</p>
@@ -1416,6 +1448,7 @@
     renderLanding();
     renderProfessional();
     renderHuman();
+    renderSupportNotes();
     renderSubstack();
     setupPoem();
     setupResume();
